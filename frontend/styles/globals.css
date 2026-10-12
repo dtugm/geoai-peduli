@@ -1,0 +1,109 @@
+@import "tailwindcss";
+@import "./custom.css";
+@config "../tailwind.config.js";
+
+.maplibregl-compare .compare-swiper-vertical {
+  background: linear-gradient(135deg, #00a86b, #0077ff) !important;
+  box-shadow: 0 0 15px rgba(0, 114, 255, 0.6) !important;
+  border-radius: 50% !important;
+  border: 2px solid white !important;
+  width: 60px !important;
+  height: 60px !important;
+  top: 50% !important;
+  left: -30px !important;
+  margin-top: -30px !important;
+  position: absolute !important;
+  cursor: ew-resize !important;
+  transition: all 0.3s ease;
+}
+
+.maplibregl-compare .compare-swiper-vertical::before,
+.maplibregl-compare .compare-swiper-vertical::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+}
+
+.maplibregl-compare .compare-swiper-vertical::before {
+  left: 15px;
+  border-right: 10px solid white;
+}
+
+.maplibregl-compare .compare-swiper-vertical::after {
+  right: 15px;
+  border-left: 10px solid white;
+}
+
+.maplibregl-compare .compare-swiper-vertical:hover {
+  box-shadow: 0 0 25px rgba(0, 224, 255, 0.8) !important;
+  transform: scale(1.05);
+}
+/* Scrollbar ke kiri */
+.scroll-left {
+  direction: ltr; /* Normal layout */
+}
+
+/* Flip scrollbar ke kiri */
+.scroll-left::-webkit-scrollbar {
+  width: 8px;
+  transform: scaleX(-1);
+}
+
+.scroll-left::-webkit-scrollbar-thumb {
+  background: rgba(100, 100, 100, 0.6);
+  border-radius: 4px;
+  transform: scaleX(-1);
+}
+
+.scroll-left::-webkit-scrollbar-track {
+  background: transparent;
+  transform: scaleX(-1);
+}
+
+/* Firefox */
+.scroll-left {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(100, 100, 100, 0.6) transparent;
+}
+
+.maplibregl-popup-content {
+  border-radius: 12px !important;
+  padding: 0 !important; /* kalau mau full custom HTML tanpa padding bawaan */
+  overflow: hidden !important;
+  background: transparent !important; /* biar styling HTML kamu yang mengatur */
+  box-shadow: none !important; /* disable shadow bawaan kalau mau */
+}
+
+.fancy-compass {
+  margin: 12px 12px 0 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  background: rgba(20, 20, 20, 0.55);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.fancy-compass:hover {
+  box-shadow: 0 0 10px rgba(255, 100, 100, 0.7);
+  transform: scale(1.05);
+}
+
+.fancy-compass svg {
+  width: 80px;
+  height: 80px;
+  transition: transform 0.2s ease-out;
+}

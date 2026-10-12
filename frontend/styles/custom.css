@@ -1,0 +1,8 @@
+@layer utilities {
+  .gradient-clip {
+    @apply bg-gradient-to-r from-primary to-brand bg-clip-text text-transparent;
+  }
+  .default-brand-gradient {
+    @apply bg-gradient-to-r from-primary to-brand;
+  }
+}
