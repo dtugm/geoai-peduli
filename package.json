@@ -1,0 +1,8 @@
+{
+  "name": "geoai-peduli",
+  "private": true,
+  "description": "Root repo hanya memuat konfigurasi deploy Railway (.railway/railway.ts). Aplikasi ada di frontend/.",
+  "devDependencies": {
+    "railway": "^3.16.0"
+  }
+}

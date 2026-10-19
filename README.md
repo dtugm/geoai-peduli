@@ -71,6 +71,9 @@ banjir yang sudah dihitung) dan `frontend/public/images` (header & thumbnail lap
 
 ## Deploy
 
+**Railway** (utama): konfigurasi di `.railway/railway.ts`, langkah lengkap di
+[docs/DEPLOY-RAILWAY.md](docs/DEPLOY-RAILWAY.md).
+
 Vercel / Cloud Run: Root Directory = `frontend`.
 
 ## Asal
