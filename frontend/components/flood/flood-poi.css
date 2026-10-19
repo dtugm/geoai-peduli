@@ -1,0 +1,76 @@
+/* POI berdenyut kabupaten terdampak banjir (FloodMap) */
+.flood-poi {
+  position: relative;
+  width: var(--poi-size);
+  height: var(--poi-size);
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.flood-poi-dot {
+  position: absolute;
+  inset: 25%;
+  border-radius: 9999px;
+  background: var(--poi-color);
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.9),
+    0 0 14px var(--poi-color);
+}
+
+.flood-poi-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  border: 2px solid var(--poi-color);
+  opacity: 0;
+  animation: flood-poi-pulse 2.4s ease-out infinite;
+}
+
+.flood-poi-ring-2 {
+  animation-delay: 1.2s;
+}
+
+.flood-poi-label {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 4px);
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.flood-poi:hover .flood-poi-label,
+.flood-poi:focus-visible .flood-poi-label {
+  opacity: 1;
+}
+
+.flood-poi:hover .flood-poi-dot {
+  transform: scale(1.15);
+}
+
+@keyframes flood-poi-pulse {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flood-poi-ring {
+    animation: none;
+    opacity: 0.5;
+    transform: scale(1.4);
+  }
+}
