@@ -5,13 +5,18 @@ import CatalogGrid from "@/components/landing/CatalogGrid";
 import { SiteFooter, SiteHeader } from "@/components/landing/SiteChrome";
 import { catalog } from "@/constant/catalog.constant";
 
-// Mosaik tile Sentinel-2 cloudless zoom 5 yang menutupi wilayah Indonesia
-const heroTiles = [15, 16].flatMap((y) =>
-  [24, 25, 26, 27, 28].map(
+// Mosaik tile Sentinel-2 cloudless zoom 6 (±17°LU–17°LS, 90°–146°BT) yang
+// menutupi wilayah Indonesia; zoom 6 agar tetap tajam di layar lebar
+const heroTileX = [48, 49, 50, 51, 52, 53, 54, 55, 56, 57];
+const heroTileY = [29, 30, 31, 32, 33, 34];
+const heroTiles = heroTileY.flatMap((y) =>
+  heroTileX.map(
     (x) =>
-      `https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless-2024_3857/default/g/5/${y}/${x}.jpg`,
+      `https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless-2024_3857/default/g/6/${y}/${x}.jpg`,
   ),
 );
+const heroCols = heroTileX.length;
+const heroRows = heroTileY.length;
 
 const steps = [
   {
@@ -53,14 +58,31 @@ export default function Home() {
 
       {/* HERO */}
       <section className="relative overflow-hidden bg-slate-950">
+        {/* Mosaik berperilaku seperti object-fit: cover — tile selalu persegi,
+            diskalakan menutupi hero lalu dipotong rata tengah */}
         <div
           aria-hidden
-          className="absolute inset-0 flex justify-center overflow-hidden opacity-70"
+          className="absolute inset-0 flex items-center justify-center overflow-hidden opacity-70 [container-type:size]"
         >
-          <div className="grid aspect-[5/2] w-full min-w-[1600px] shrink-0 grid-cols-5">
+          <div
+            className="grid shrink-0"
+            style={{
+              width: `max(100cqw, ${(heroCols / heroRows) * 100}cqh)`,
+              aspectRatio: `${heroCols} / ${heroRows}`,
+              gridTemplateColumns: `repeat(${heroCols}, minmax(0, 1fr))`,
+              gridTemplateRows: `repeat(${heroRows}, minmax(0, 1fr))`,
+            }}
+          >
             {heroTiles.map((src) => (
               // eslint-disable-next-line @next/next/no-img-element
-              <img key={src} alt="" className="h-full w-full" src={src} />
+              <img
+                key={src}
+                alt=""
+                className="block h-full w-full select-none"
+                decoding="async"
+                draggable={false}
+                src={src}
+              />
             ))}
           </div>
         </div>
