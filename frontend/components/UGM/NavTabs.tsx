@@ -3,6 +3,7 @@
 import { Tabs, Tab } from "@heroui/react";
 import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function UgmNavigationTabs() {
     const router = useRouter();
@@ -47,13 +48,15 @@ export default function UgmNavigationTabs() {
 
             {/* Desktop version */}
             <div className="hidden sm:flex sm:items-center sm:gap-1">
-                <Image
-                    src="/geoait.png"
-                    alt="Logo"
-                    width={100}
-                    height={30}
-                    className="object-contain"
-                />
+                <Link href="/" aria-label="Beranda GeoAI Peduli" className="flex-shrink-0">
+                    <Image
+                        src="/geoait.png"
+                        alt="Logo"
+                        width={100}
+                        height={30}
+                        className="object-contain"
+                    />
+                </Link>
                 <DesktopTabs
                     selectedKey={selectedKey}
                     handleSelectionChange={handleSelectionChange}
@@ -62,13 +65,15 @@ export default function UgmNavigationTabs() {
 
             {/* Mobile version */}
             <div className="flex sm:hidden items-center gap-2">
-                <Image
-                    src="/geoait.svg"
-                    alt="Logo"
-                    width={32}
-                    height={32}
-                    className="object-contain flex-shrink-0"
-                />
+                <Link href="/" aria-label="Beranda GeoAI Peduli" className="flex-shrink-0">
+                    <Image
+                        src="/geoait.svg"
+                        alt="Logo"
+                        width={32}
+                        height={32}
+                        className="object-contain flex-shrink-0"
+                    />
+                </Link>
                 <MobileTabs
                     selectedKey={selectedKey}
                     handleSelectionChange={handleSelectionChange}
